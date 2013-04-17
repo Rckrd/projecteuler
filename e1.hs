@@ -1,0 +1,4 @@
+-- Sum all numbers divisible by 5 or 3
+--
+-- x = :col
+--  [x | x <- [1..100], x `mod` 5 == 0 || x `mod` 3 == 0]
