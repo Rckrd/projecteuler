@@ -1,37 +1,29 @@
 #problem 15
-#triangle sum - closed form
-# 
-TN <- function(n){(n+1)/2*n}
+#routes in a 20x20 grid
 
-x <- 1
-N <- 10^6
+#count all binary digits with a digit sum of 20
 
-res <- rep(0,3*N)
-dim(res) <- c(3,N)
 
-for (i in 1:N){
-  res[1,i] <- i
-  res[2,i] <- TN(i)
-  res[3,i] <- 0
+
+#load library
+library(sfsmisc)
+
+
+
+
+
+n <- 20
+cnt <- 0
+i <- 1
+while (i < 2^(2*n)){
+  b <- digitsBase(i,base=2, 2*n)
+  if (sum(b) == n) cnt <- cnt + 1
+  i <- i + 1
 }
-x
-TN(x)
+cnt
 
 
-
-GetDivisor <- function(n){
-  res <- NULL
-  for (i in 1:ceiling(n/2,0))
-    if (n %% i == 0) res <- append(res,i)
-  res
+f <- function(n){
+  factorial(2*n)/factorial(n)^2
 }
-
-DivisorFunction <- function(n,x){
-  sum(GetDivisor(n)^x)
-}
-
-n <- TN(10^4)
-divisors <- ((n %% 1:n == 0) * 1:n)
-divisors <- divisors[divisors>0]
-length(divisors)
-
+  
